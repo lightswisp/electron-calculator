@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <body>
+            <div class="calc">
+                
+                <div class="top">
+                    <input type="" name="" id="screen" value="" disabled />
+                </div>
+                
+                <div class="bottom">
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                    <button>×</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>÷</button>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>0</button>
+                    <button>AC</button>
+                    <button>+</button>
+                    <button>-</button>
+                    <button>=</button>
+                </div>
+                
+            </div>
+        </body>
+        <style>
+            *{
+                margin:0;
+            }
+            body,html{
+                width:100%;
+                height:100%;
+            }
+            .calc{
+                width:100%;
+                height:100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            .top{
+                width:100%;
+                height:20%;
+                display:flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .top input{
+                width:100%;
+                height: 100%;
+                border:none;
+                outline:none;
+                font-size:30px;
+                padding:0 10px;
+                text-align:right;
+                color:#282828;
+            }
+            .bottom{
+                width:100%;
+                height:80%;
+                display: flex;
+                
+                flex-wrap:wrap;
+                align-items: stretch;
+                align-content: stretch;
+                background:#282828;
+                
+            }
+            .bottom button{
+                cursor:pointer;
+                flex-grow:1;
+                padding:30px 35px;
+                transition: 0.2s;
+                border:none;
+                background:#282828;
+                color:white;
+                font-size:20px;
+            }
+            .bottom button:hover{
+                background:#969696;
+            }
+            .bottom button:last-child{
+                background: #00897B;
+            }
+        </style>
+        
+        <script>
+          let buttons = document.getElementsByTagName("button")
+          let screen = document.querySelector("#screen")
+          let expression = ""
+          for (button of buttons){
+              button.onclick = function(){
+                  let symbol = this.innerText
+                  if(symbol == "="){
+                     expression = expression.replaceAll("×", "*").replaceAll("÷", "/")
+                      console.log(expression)
+                      screen.value=eval(expression)
+                  	  expression = screen.value
+                  }
+                  else if(symbol == "AC"){
+                      expression=""
+                      screen.value=""
+                  }
+                 
+                  else{
+                      expression+=symbol
+                      screen.value+=symbol
+                  }
+              }
+                  
+              
+          }
+        </script>
+</html>
